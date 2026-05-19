@@ -21,6 +21,14 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def mapboxDownloadsToken = localProperties.getProperty('MAPBOX_DOWNLOADS_TOKEN')
+if (mapboxDownloadsToken == null || mapboxDownloadsToken.trim().isEmpty()) {
+    mapboxDownloadsToken = project.findProperty('MAPBOX_DOWNLOADS_TOKEN')
+}
+if (mapboxDownloadsToken == null || mapboxDownloadsToken.trim().isEmpty()) {
+    mapboxDownloadsToken = System.getenv('MAPBOX_DOWNLOADS_TOKEN')
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
@@ -83,7 +91,7 @@ allprojects {
             }
             credentials {
                 username = "mapbox"
-                password = project.findProperty("MAPBOX_DOWNLOADS_TOKEN")
+                password = mapboxDownloadsToken ?: ""
             }
         }
     }

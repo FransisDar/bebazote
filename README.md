@@ -16,13 +16,16 @@ flutter pub get
 ```
 
 Android builds also need a private Mapbox downloads token so Gradle can fetch the
-Mapbox SDK artifacts. Add it to your user Gradle properties file so it stays out
-of source control:
+Mapbox SDK artifacts. Add it to one of these private locations so it stays out of
+source control:
 
 ```properties
-# C:\Users\DELL\.gradle\gradle.properties
+# android/local.properties
 MAPBOX_DOWNLOADS_TOKEN=YOUR_SECRET_MAPBOX_DOWNLOADS_TOKEN
 ```
+
+You can also set `MAPBOX_DOWNLOADS_TOKEN` in `C:\Users\DELL\.gradle\gradle.properties`
+or as a CI environment variable.
 
 Run with Mapbox enabled:
 
